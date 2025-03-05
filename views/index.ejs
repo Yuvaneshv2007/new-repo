@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes App</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="wel">
+    <h1>Thank You for Visiting my Website</h1>
+  </div>
+  <div class="container">
+    <h1>My Notes</h1>
+
+    
+    <form action="/add-note" method="POST">
+      <input type="text" name="title" placeholder="Note Title" required>
+      <textarea name="content" placeholder="Write your note..." required></textarea>
+      <button type="submit">Add Note</button>
+    </form>
+
+    
+    <ul>
+      <% notes.forEach(note => { %>
+        <li>
+          <h3><%= note.title %></h3>
+          <p><%= note.content %></p>
+          <form action="/delete-note" method="POST" style="display:inline;">
+            <input type="hidden" name="noteId" value="<%= note._id %>">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</body>
+</html>
